@@ -12,8 +12,8 @@ int env_shell(void)
 char **env;
 for (env = environ; *env; env++)
 {
-        write(STDOUT_FILENO, *env, _strlen(*env));
-        write(STDOUT_FILENO, "\n", 1);
+write(STDOUT_FILENO, *env, _strlen(*env));
+write(STDOUT_FILENO, "\n", 1);
 }
 return (0);
 }

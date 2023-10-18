@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * command_executer - Execute a command with error handling.
  * @command: An array of command arguments.
@@ -21,9 +20,7 @@ char *path_value = _getenv("PATH");
 int (*builtin_func)(void) = NULL;
 
 my_builtin_functions builtins[] = {
-{"exit", exit_shell},
-{"env", env_shell},
-{NULL, NULL}
+{"exit", exit_shell}, {"env", env_shell}, {NULL, NULL}
 };
 if (!path_value)
 {
@@ -49,11 +46,8 @@ break;
 }
 j++;
 }
-
 if (builtin_func)
-{
 return (builtin_func()); /* Call the built-in function */
-}
 
 perror(argv[0]);
 free(command);

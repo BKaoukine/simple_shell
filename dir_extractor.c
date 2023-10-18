@@ -4,13 +4,16 @@
  * @envir: The environment variable containing paths.
  * @path: The path to be removed.
  */
-void remove_path(char *envir, const char *path) {
-    char *match;
-    int len = strlen(path);
-    while ((match = _strstr(envir, path)) != NULL) {
-        *match = '\0';
-        _strcat(envir, match + len);
-    }
+void remove_path(char *envir, const char *path)
+{
+char *match;
+int len = strlen(path);
+
+while ((match = _strstr(envir, path)) != NULL)
+{
+*match = '\0';
+_strcat(envir, match + len);
+}
 }
 /**
  * directories_extractor - Extract directories from a colon-separated path.
