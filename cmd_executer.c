@@ -7,21 +7,15 @@
  * Return: The exit status of the executed command.
  *
  * This function forks a child process to execute the given @command. It prints
- * the command being executed and checks if the execution succeeds. If the
- * command is not found in the current directory, it searches for it in the
- * directories listed in the "PATH" environment variable.
+ * it searches for it in the directories listed
+ * in the "PATH" environment variable.
  */
 int command_executer(char **command, char **argv)
 {
 pid_t child_processor;
-int exit_status, j = 0;
-char **directories, *fullpath;
-char *path_value = _getenv("PATH");
-int (*builtin_func)(void) = NULL;
+int exit_status;
+char **directories, *fullpath, *path_value = _getenv("PATH");
 
-my_builtin_functions builtins[] = {
-{"exit", exit_shell}, {"env", env_shell}, {NULL, NULL}
-};
 if (!path_value)
 {
 fprintf(stderr, "PATH environment variable not found\n");
@@ -36,25 +30,13 @@ if (fullpath)
 {
 command[0] = fullpath;
 if (execve(fullpath, command, environ) == -1)
-{
-while (builtins[j].name != NULL)
-{
-if (_strcmp(command[0], builtins[j].name) == 0)
-{
-builtin_func = builtins[j].func;
-break;
-}
-j++;
-}
-if (builtin_func)
-return (builtin_func()); /* Call the built-in function */
-
+{/* Call the built-in function */
+execute_builtin(command[0]);
 perror(argv[0]);
 free(command);
 exit(100);
 }
 }
-/* fprintf(stderr, "%s: command not found\n", command[0]); */
 perror(command[0]);
 free(command);
 exit(127);

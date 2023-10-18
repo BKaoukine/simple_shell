@@ -43,6 +43,7 @@ void remove_path(char *envir,const char *path);
 char **directories_extractor(char *path);
 int env_shell(void);
 int exit_shell(void);
+int execute_builtin(char *command);
 
 int _strlen(const char *string);
 char *_strdup(char *string);
