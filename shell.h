@@ -36,10 +36,10 @@ int (*func)(void);
 char *read_user_input(void);
 char *get_user_input(void);
 char **command_generator(char *user_input);
-char* _getenv(char* name);
+char *_getenv(char *name);
 int command_executer(char **command, char **argv);
 char *command_finder(char **directories, char *command);
-void remove_path(char *envir,const char *path);
+void remove_path(char *envir, const char *path);
 char **directories_extractor(char *path);
 int env_shell(void);
 int exit_shell(void);
@@ -51,7 +51,7 @@ int _strcmp(char *str1, char *str2);
 int _strncmp(char *s1, char *s2, int n);
 void _strcpy(char *dest, char *src);
 void _strcat(char *dest, char *src);
-char *_strstr(char *haystack,const char *needle);
+char *_strstr(char *haystack, const char *needle);
 int _atoi(char *s);
 
 
